@@ -5,9 +5,9 @@ import java.io.File;
 
 class ImageData {
 
-    public int[][] coloredPoints;
+    int[][] coloredPoints;
 
-    public static ImageData fromFile(String pathToFile) {
+    static ImageData fromFile(String pathToFile) {
         try {
             ImageData result = new ImageData();
             File imageFile = new File(pathToFile);
@@ -31,5 +31,11 @@ class ImageData {
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    static ImageData fromScratch(int width, int height) {
+        ImageData result = new ImageData();
+        result.coloredPoints = new int[1000][1000];
+        return result;
     }
 }

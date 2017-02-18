@@ -1,0 +1,6 @@
+*.bmp
+*.class
+
+*.xml
+
+.idea/workspace.xml
