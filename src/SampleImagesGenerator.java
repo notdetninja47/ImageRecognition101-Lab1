@@ -5,7 +5,8 @@ import java.util.Random;
 import javax.imageio.*;
 
 class SampleImagesGenerator {
-    static public void generateImageWithRandomCircle(String filepath, int width, int height) {
+
+    static void generateImageWithRandomCircle(String filepath, int width, int height, int noiseAmount) {
         try {
             BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             Graphics2D graphics = image.createGraphics();
@@ -28,6 +29,13 @@ class SampleImagesGenerator {
 
             graphics.setColor(Color.BLACK);
             graphics.drawOval(x, y, diameter, diameter);
+
+            for (int i = 0; i < noiseAmount; i++) {
+                x = randomInt(0, height-1);
+                y = randomInt(0, width-1);
+                image.setRGB(x, y, Color.RED.getRGB());
+                Thread.sleep(1);
+            }
 
             String filepathWithAnswers = filepath + "(x=" + (x + radius) + " y=" + (y + radius) + " rad=" + radius + ").bmp";
             File f = new File(filepathWithAnswers);
