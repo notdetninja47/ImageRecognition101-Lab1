@@ -7,8 +7,11 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-        generateSamples(20, 100);
-        //processSamples();
+        generateSamples(5, 0);
+        generateSamples(5, 100);
+        generateSamples(5, 1000);
+
+        processSamples();
     }
 
     private static void generateSamples(int count, int noiseAmount) {
@@ -39,7 +42,11 @@ public class Main {
         int width = 1000;
         int height = 1000;
         ImageData imageData = ImageData.fromFile(pathToFile);
+
+        long startTime = System.currentTimeMillis();
         ImageData.RecognizedCircle circle = imageData.recognizeCircle();
+        long currentTime = System.currentTimeMillis() - startTime;
+        System.out.print("time spent: " + currentTime + "  => ");
 
         if (circle != null) {
             int topLeftX = circle.center.x - circle.radius;
